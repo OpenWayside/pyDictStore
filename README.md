@@ -9,7 +9,7 @@ pyDictStore add automated dictionary storage to properties eliminating the need 
 
 
 # Minimum usage
-The minimum usage of this library requires you to add the decorator @storage to your class. This will automatically wrap your properties with the auto storage capabilities. The default value applied to any property is none. To override this, you will need to apply the @default decorator to your propperty's getter. 
+The minimum usage of this library requires you to add the decorator @storage to your class. This will automatically wrap your properties with the auto storage capabilities. The default value applied to any property is None. To override this, you will need to apply the @default decorator to your propperty's getter. 
 ```python
 @storage
 class ExampleClass(): 
@@ -46,7 +46,7 @@ class ExampleClass():
 
 ## setter
 
-Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type such as parsing an integer from a string or storing a Boolean value as an integer. The critical aspect which is abnormal for a typical setter is that you need to return a value. The one limitation is that you cannot pass a none value.
+Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type such as parsing an integer from a string or storing a Boolean value as an integer. The critical aspect which is abnormal for a typical setter is that you need to return a value. The one limitation is that you cannot pass a None value.
 
 ```python
 @storage
