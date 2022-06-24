@@ -73,8 +73,7 @@ When the setter of a property is called it will raise a PropertyChanged Event wi
 class ExampleClass(): 
     def __init__(self) -> None:
         self.PropertyChanged += self.onPropertyChanged
-
-              
+        
     @staticmethod
     def onPropertyChanged(sender, name:str, oldValue, newValue):
         ... #Your Custom Action here
