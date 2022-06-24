@@ -5,7 +5,7 @@
 
 # What is pyDictStore
 
-pyDictStore add automated dictionary storage to properties eliminating the need for code bodies for property getters and setters with change event.
+pyDictStore adds automated dictionary storage to properties eliminating the need for code bodies for property getters and setters. It also provides a property change event.
 
 
 # Minimum usage
@@ -46,7 +46,9 @@ class ExampleClass():
 
 ## setter
 
-Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type such as parsing an integer from a string or storing a Boolean value as an integer. The critical aspect which is abnormal for a typical setter is that you need to return a value. The one limitation is that you cannot pass a None value.
+Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type such as parsing an integer from a string or storing a Boolean value as an integer. To do this requires going agaisnt normal setter conventions by using a return statement.
+
+> :warning: **Warning:** Overriding the output does not work if you return a value of None.
 
 ```python
 @storage
@@ -62,9 +64,9 @@ class ExampleClass():
 # Event Handling
 When the setter of a property is called it will raise a PropertyChanged Event within your class. This provides you the instance of the class that raised the event, the name of the property, the previous value and the new value.
 
-It's important to note that when the default value is instantiated in the property that the event will not fire. 
+> :bulb: **Note:** When the default value is instantiated the PropertyChanged event does not fire.
 
-## ...within class
+## ...event handler within class
 
 ```python
 @storage
@@ -84,8 +86,7 @@ class ExampleClass():
     def exampleProperty(self,value) -> None: ...
 ```
 
-## ...outside of class
-
+## ...event handler external from class
 
 ```python
 def onPropertyChanged(sender, name:str, oldValue, newValue):
