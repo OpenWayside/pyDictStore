@@ -1,11 +1,13 @@
 from setuptools import setup, find_packages
 from os.path import exists, join, dirname
 import re
+import sys
+
 
 PROJECT = 'pyDictStore'
 AUTHOR = 'Peter Varney, OpenWayside'
 AUTHOR_EMAIL = 'pyDictStore@OpenWayside.org'
-URL = 'https://OpenWayside.org/pyDictStore'
+URL = 'https://OpenWayside.org'
 DESCRIPTION = "Collection of custom types developed to simplify the" \
               " process of integrating Identity and Mass Communication" \
               " systems"
@@ -29,6 +31,9 @@ def INSTALL_REQUIRES():
 
 
 if __name__ == '__main__':
+    sys.argv.append('build')
+    sys.argv.append('sdist')
+    sys.argv.append('bdist_wheel')
     setup(
         install_requires=INSTALL_REQUIRES(),
         name=PROJECT,
@@ -38,9 +43,9 @@ if __name__ == '__main__':
         description=DESCRIPTION,
         long_description=DESCRIPTION_LONG(),
         long_description_content_type="text/markdown",
-        url="https://OpenWayside.org/pyArdT",
+        url=URL,
         project_urls={
-            'Documentation': 'https://OpenWayside.org/pyDictStore/rtfm',
+            'Documentation': 'https://openwayside.org/rtm/pyDictStore/',
             #'Funding': '',
             'Source': 'https://github.com/OpenWayside/pyDictStore',
             'Issues': 'https://github.com/OpenWayside/pyDictStore/issues',

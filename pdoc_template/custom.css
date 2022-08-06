@@ -1,0 +1,40 @@
+nav.pdoc h1, nav.pdoc h2, nav.pdoc h3, nav.pdoc footer {
+    color: var(--text);
+}
+
+.pdoc .pdoc-button{
+    z-index: 2;
+}
+
+.pdoc pre{
+    border-radius: 20px;
+}
+
+.pdoc-code{
+    background: none;
+}
+
+.pdoc {
+    --code: rgba(238, 238, 238, 0.8);
+}
+
+.pdoc .attribution {
+    position: absolute;
+    bottom: 0;
+}
+
+
+@media (min-width: 770px){
+    nav.pdoc {
+        height: -o-calc(100% - 50px); /* opera */
+        height: -webkit-calc(100% - 50px); /* google, safari */
+        height: -moz-calc(100% - 50px); /* firefox */
+        height: calc(100% - 50px);
+    }
+}
+
+@media (max-width: 769px) {
+    .pdoc .attribution {
+        position: unset;
+    }
+}
