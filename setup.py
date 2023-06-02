@@ -8,11 +8,11 @@ PROJECT = 'pyDictStore'
 AUTHOR = 'Peter Varney, OpenWayside'
 AUTHOR_EMAIL = 'pyDictStore@OpenWayside.org'
 URL = 'https://OpenWayside.org'
-DESCRIPTION = "Collection of custom types developed to simplify the" \
-              " process of integrating Identity and Mass Communication" \
-              " systems"
+DESCRIPTION = "pyDictStore adds automated dictionary storage to properties" \
+              " eliminating the need for code bodies, property getters and" \
+              " setters. It also provides a property change event."
 
-def VERSION(project:str):
+def VERSION(project:str=PROJECT):
     init = join(dirname(__file__),'src',project,'__init__.py')
     if exists(init):
         with open(init, 'r', encoding="utf8") as f:
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     setup(
         install_requires=INSTALL_REQUIRES(),
         name=PROJECT,
-        version=VERSION(PROJECT),
+        version=VERSION(),
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
         description=DESCRIPTION,

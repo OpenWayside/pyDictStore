@@ -42,5 +42,9 @@ def test_s():
     print('item2 == Default:',isDefault(a,'item2'))
     assert(isDefault(a,'item2'))
 
+    print("-----")
+    print('TestPropDefaul Default Value:',getDefault(TestPropDefaul(),'item'))
+    assert(getDefault(TestPropDefaul(),'item') == 10)
+
 if __name__ == "__main__":
     test_s()

@@ -22,8 +22,8 @@ layout: pdoc
   </ul></li>
   <li><a href="#event-handling">Event Handling</a>
   <ul>
-    <li><a href="#within-class">...within class</a></li>
-    <li><a href="#outside-of-class">...outside of class</a></li>
+    <li><a href="#event-handler-within-class">...event handler within class</a></li>
+    <li><a href="#event-handler-external-from-class">...event handler external from class</a></li>
   </ul></li>
   <li><a href="#library-functions">Library functions</a></li>
 </ul>
@@ -41,7 +41,7 @@ layout: pdoc
     </ul>
 
 
-            <footer>v1.0.0</footer>
+            <footer>v1.0.1</footer>
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -62,11 +62,11 @@ pyDictStore    </h1>
 
 <h1 id="what-is-pydictstore">What is pyDictStore</h1>
 
-<p>pyDictStore add automated dictionary storage to properties eliminating the need for code bodies for property getters and setters with change event</p>
+<p>pyDictStore adds automated dictionary storage to properties eliminating the need for code bodies, property getters and setters. It also provides a property change event.</p>
 
 <h1 id="minimum-usage">Minimum usage</h1>
 
-<p>The minimum usage of this library requires you to ad the decoragotr @storage to your class. This will automatically automatically wrap your properties with the auto storage capabilities. The default value applied to any property is None. To override this you will need to apply the @default decorator to your propperties getter. </p>
+<p>The minimum usage of this library requires you to add the @storage decorator to your class. This will automatically wrap your properties with the auto storage capabilities. The default value applied to any property is None. To override this, you will need to apply the @default decorator to your propperty's getter. </p>
 
 <div class="pdoc-code codehilite"><pre><span></span><code><span class="nd">@storage</span>
 <span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">():</span> 
@@ -103,7 +103,11 @@ pyDictStore    </h1>
 
 <h2 id="setter">setter</h2>
 
-<p>Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type such as parsing an integer from a string or storing a boolean value as an integer. The critical aspect which is abnormal for a typical setter is that you need to return a value. The one limitation is that you can not pass a None value.</p>
+<p>Overriding the setter allows you to modify the value that is saved into storage. This is helpful if you need to perform logic against the value being passed in or if you want to force the storage type; such as parsing an integer from a string or storing a Boolean value as an integer. To do this requires ignoring normal setter conventions by using a return statement.</p>
+
+<blockquote>
+  <p>:warning: <strong>Warning:</strong> Overriding the output does not work if you return a value of None.</p>
+</blockquote>
 
 <div class="pdoc-code codehilite"><pre><span></span><code><span class="nd">@storage</span>
 <span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">():</span>
@@ -117,17 +121,18 @@ pyDictStore    </h1>
 
 <h1 id="event-handling">Event Handling</h1>
 
-<p>When the setter of a property is called it will raise a PropertyChanged Event within your class. This provides you the instance of the class that raised the event, the name of the property, the previous value and the new value.</p>
+<p>When the setter of a property is called it will raise a PropertyChanged Event within your class. This provides you the instance of the class that raised the event, the name of the property, the previous value, and the new value.</p>
 
-<p>Its important to note that when the default value is instantiated in the property that the event will not fire. </p>
+<blockquote>
+  <p>:bulb: <strong>Note:</strong> When the default value is instantiated the PropertyChanged event does not fire.</p>
+</blockquote>
 
-<h2 id="within-class">...within class</h2>
+<h2 id="event-handler-within-class">...event handler within class</h2>
 
 <div class="pdoc-code codehilite"><pre><span></span><code><span class="nd">@storage</span>
 <span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">():</span> 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">PropertyChanged</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">onPropertyChanged</span>
-
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">onPropertyChanged</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
@@ -140,7 +145,7 @@ pyDictStore    </h1>
     <span class="k">def</span> <span class="nf">exampleProperty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 
-<h2 id="outside-of-class">...outside of class</h2>
+<h2 id="event-handler-external-from-class">...event handler external from class</h2>
 
 <div class="pdoc-code codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">onPropertyChanged</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
     <span class="o">...</span> <span class="c1">#Your Custom Action here</span>
