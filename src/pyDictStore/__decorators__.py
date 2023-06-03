@@ -27,7 +27,7 @@ class storage:
                     else storageSetter(prop.fset)
                     )
             setattr(self.cls, name, property(fget, fset, prop.fdel))  
-        return self.cls()
+        return self.cls(*args,**kwargs)
 
 class default:
     def __init__(self, value=None) -> None:
