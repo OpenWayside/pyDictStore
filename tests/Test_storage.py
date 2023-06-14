@@ -29,6 +29,7 @@ class TestPropDefaul():
 def test_s():
     a = TestPropDefaul()
     a.item = 12
+
     print('item',a.item)
     print('item Default Value:',getDefault(a,'item'))
     print('item == Default:',isDefault(a,'item'))

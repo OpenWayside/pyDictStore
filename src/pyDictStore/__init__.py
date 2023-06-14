@@ -5,7 +5,7 @@
 '''
 
 __PROJECT__ = 'pyDictStore'
-__VERSION__ = '1.0.2'
+__VERSION__ = '1.0.3'
 
 from .__decorators__ import default, storageSetter, storage
 
